@@ -2,7 +2,7 @@
   "name": "pownow",
   "version": "1.0.0",
   "description": "",
-  "main": "seed.js",
+  "main": "index.js",
   "scripts": {
     "start:server": " node server/index.js",
     "start:server-dev": "./node_modules/.bin/nodemon -q --watch server server/index.js",
