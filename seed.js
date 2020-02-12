@@ -15,7 +15,7 @@ const passList = [
 ];
 //create see pass in DB
 
-const { Pass, Resort } = require('./server/models/models');
+const { Pass, Resort } = require('./server/db/models/models');
 const { db } = require('./server/db/index.js');
 const resortList = [
   {

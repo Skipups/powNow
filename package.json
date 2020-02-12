@@ -2,14 +2,14 @@
   "name": "pownow",
   "version": "1.0.0",
   "description": "",
-  "main": "seed.js",
+  "main": "index.js",
   "scripts": {
     "start:server": " node server/index.js",
     "start:server-dev": "./node_modules/.bin/nodemon -q --watch server server/index.js",
     "start:client-dev": "./node_modules/.bin/webpack --mode=\"development\" --watch",
     "build": "./node_modules/.bin/webpack --mode=\"production\"",
     "start:dev": "npm run start:server-dev & npm run start:client-dev",
-    "seed": "node newSeed.js"
+    "seed": "node seed.js"
   },
   "dependencies": {
     "babel-loader": "^8.0.6",

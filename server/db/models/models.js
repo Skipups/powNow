@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
-const { db } = require('./db/index.js');
+
+const { db } = require('./../connection.js');
 
 // define pass model
 const Pass = db.define('pass', {
@@ -25,4 +26,4 @@ const Resort = db.define('resort', {
   },
 });
 
-module.export = { Pass, Resort };
+module.exports = { Pass, Resort };

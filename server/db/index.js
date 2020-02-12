@@ -4,7 +4,7 @@ const { db } = require('./connection.js');
 Pass.hasMany(Resort);
 Resort.belongsTo(Pass);
 
-module.export = {
+module.exports = {
   Pass,
   Resort,
   db,

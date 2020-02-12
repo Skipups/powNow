@@ -7,6 +7,7 @@ const PORT = process.env.PORT || 3000;
 const PUBLIC_PATH = path.join(__dirname, '../dist');
 
 const app = express();
+app.use(express.json());
 
 app.use((req, res, next) => {
   console.log(chalk.cyan(`${new Date().toString()}: ${req.path}`));
