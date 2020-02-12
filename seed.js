@@ -1,3 +1,5 @@
+const { Pass, Resort } = require('./server/db/models/models');
+const { db } = require('./server/db/index.js');
 // pass and resort info
 const passList = [
   {
@@ -15,8 +17,6 @@ const passList = [
 ];
 //create see pass in DB
 
-const { Pass, Resort } = require('./server/models/models');
-const { db } = require('./server/db/index.js');
 const resortList = [
   {
     name: 'Alta',
@@ -41,8 +41,9 @@ async function syncAndSeedDatabase() {
   try {
     await db.sync({ force: true });
     console.log('seeding database');
-    await Resort.bulkCreate(resortList);
+    // you have to create the Passes first or the Resort creation will fail when looking up passId
     await Pass.bulkCreate(passList);
+    await Resort.bulkCreate(resortList);
   } catch (e) {
     console.log(e);
   }

@@ -1,7 +1,5 @@
 const { Router } = require('express');
-const { models } = require('../db/index.js');
-
-const { Pass, Resort } = models;
+const { Pass, Resort } = require('../db/index.js');
 
 const apiRouter = Router();
 //not complete
