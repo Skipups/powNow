@@ -11,6 +11,10 @@ const Pass = db.define('pass', {
   name: {
     type: Sequelize.STRING,
   },
+  image: {
+    type: Sequelize.TEXT,
+    defaultValue: 'https://www.ikonpass.com/static/images/Facebook-Large.jpg',
+  },
 });
 
 // define resort model

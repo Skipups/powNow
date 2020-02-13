@@ -3,14 +3,19 @@ const passList = [
   {
     id: 1,
     name: 'Ikon',
+    image:
+      'https://www.shop-eat-surf.com/wp-content/uploads/2019/07/Screen-Shot-2019-07-19-at-9.51.35-AM.png',
   },
   {
     id: 2,
     name: 'Epic',
+    image:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSdeCbnZOjikPfienIsc_5iWGOGg132wCHwV1rzgFyU-k6xkhnC',
   },
   {
     id: 3,
     name: 'Mountain Collective',
+    image: 'https://mountaincollective.com/img/video-carousel/take-a-run.jpg',
   },
 ];
 //create see pass in DB
@@ -41,8 +46,8 @@ async function syncAndSeedDatabase() {
   try {
     await db.sync({ force: true });
     console.log('seeding database');
-    await Resort.bulkCreate(resortList);
     await Pass.bulkCreate(passList);
+    await Resort.bulkCreate(resortList);
   } catch (e) {
     console.log(e);
   }
