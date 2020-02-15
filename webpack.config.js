@@ -7,6 +7,9 @@ module.exports = {
     path: path.join(__dirname, './dist'), // assumes your bundle.js will also be in the root of your project folder
     filename: 'main.js',
   },
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
   devtool: 'source-maps',
   module: {
     rules: [

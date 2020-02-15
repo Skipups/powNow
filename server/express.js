@@ -10,7 +10,6 @@ const app = express();
 app.use(express.json());
 
 app.use((req, res, next) => {
-  console.log(chalk.cyan(`${new Date().toString()}: ${req.path}`));
   next();
 });
 app.use(express.static(PUBLIC_PATH));

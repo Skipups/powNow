@@ -6,13 +6,13 @@ const apiRouter = Router();
 apiRouter.get('/passes', (req, res, next) => {
   Pass.findAll()
     .then(foundPasses => {
-      res.send(foundPasses);
+      console.log('FOUND PASSES ', foundPasses);
+      res.status(200).send(foundPasses);
     })
-    .catch(next);
+    .catch(e => next());
 });
 //question: why is this not a template literal?
-apiRouter.get(`/resorts/:passId`, (req, res, next) => {
-  console.log('req.params.id in resorts router', req.params.id);
+apiRouter.get('/passes/:id', (req, res, next) => {
   Resort.findAll({
     where: {
       passId: req.params.id,

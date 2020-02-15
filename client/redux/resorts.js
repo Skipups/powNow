@@ -8,14 +8,16 @@ export const setResorts = resorts => {
     type: SET_RESORTS,
     payload: resorts,
   };
+
   return action;
 };
 
 export const fetchResortsThunk = passId => {
+  console.log('passId inside fetchResortsThurnk', passId);
   return async dispatch => {
-    const resorts = (await axios.get(`/api/resorts/${passId}`)).data;
+    const resorts = (await axios.get(`/api/passes/${passId}`)).data;
 
-    return dispatch(setResort(resorts));
+    return dispatch(setResorts(resorts));
   };
 };
 

@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import Home from './Home';
 import store from '../store';
+import ShowResorts from './ShowResorts';
 import { fetchPassesThunk } from '../redux/passes';
 
 export default class Root extends Component {
@@ -20,6 +21,7 @@ export default class Root extends Component {
         <div>
           <Switch>
             <Route path="/" component={Home} exact />
+            <Route path="/passes/:id" component={ShowResorts} />
           </Switch>
         </div>
       </Router>

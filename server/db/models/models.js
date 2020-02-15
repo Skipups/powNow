@@ -25,6 +25,11 @@ const Resort = db.define('resort', {
   location: {
     type: Sequelize.ARRAY(Sequelize.DECIMAL),
   },
+  image: {
+    type: Sequelize.TEXT,
+    defaultValue:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR_W6Fk6zrahr6VC3fqDP_E09uhvTKf821sz1lbuf35ZqNUC0Xr',
+  },
   closestAirCode: {
     type: Sequelize.STRING,
   },
