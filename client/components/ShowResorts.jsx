@@ -48,6 +48,7 @@ class ShowResorts extends React.Component {
                 <Weather
                   destinationAirCode={resort.closestAirCode}
                   coordinates={resort.location}
+                  resortId={resort.id}
                 />
               </div>
 

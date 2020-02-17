@@ -1,14 +1,14 @@
 import { combineReducers } from 'redux';
 import passesReducer from './passes';
 import resortsReducer from './resorts';
-import weatherReducer from './weather';
 import airportReducer from './airport';
+import singleResortReducer from './singleResort';
 
 const appReducer = combineReducers({
   passes: passesReducer,
   resorts: resortsReducer,
-  weather: weatherReducer,
   airport: airportReducer,
+  singleResort: singleResortReducer,
 });
 
 export default appReducer;

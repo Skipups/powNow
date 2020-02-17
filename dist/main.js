@@ -86,31 +86,6 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./client/components/Flights.jsx":
-/*!***************************************!*\
-  !*** ./client/components/Flights.jsx ***!
-  \***************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Flights; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-
-
-class Flights extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-}
-
-/***/ }),
-
 /***/ "./client/components/Home.jsx":
 /*!************************************!*\
   !*** ./client/components/Home.jsx ***!
@@ -341,7 +316,8 @@ class ShowResorts extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component
             src: resort.image
           }), console.log('resort.location', resort.location)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Weather__WEBPACK_IMPORTED_MODULE_3__["default"], {
             destinationAirCode: resort.closestAirCode,
-            coordinates: resort.location
+            coordinates: resort.location,
+            resortId: resort.id
           })) // </Box>
 
         );
@@ -375,24 +351,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _redux_weather__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../redux/weather */ "./client/redux/weather.js");
+/* harmony import */ var _redux_singleResort__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../redux/singleResort */ "./client/redux/singleResort.js");
 /* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/index.js");
-/* harmony import */ var _material_ui_core_CardActions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/CardActions */ "./node_modules/@material-ui/core/esm/CardActions/index.js");
-/* harmony import */ var _material_ui_core_CardContent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/CardContent */ "./node_modules/@material-ui/core/esm/CardContent/index.js");
-/* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js");
-/* harmony import */ var _material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js");
-/* harmony import */ var react_animated_weather__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-animated-weather */ "./node_modules/react-animated-weather/build/index.js");
-/* harmony import */ var react_animated_weather__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_animated_weather__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _Flights__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Flights */ "./client/components/Flights.jsx");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var react_modal__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-modal */ "./node_modules/react-modal/lib/index.js");
-/* harmony import */ var react_modal__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(react_modal__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var _style__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./style */ "./client/components/style.js");
-
-
-
-
+/* harmony import */ var _material_ui_core_CardContent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/CardContent */ "./node_modules/@material-ui/core/esm/CardContent/index.js");
+/* harmony import */ var _material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js");
+/* harmony import */ var react_animated_weather__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-animated-weather */ "./node_modules/react-animated-weather/build/index.js");
+/* harmony import */ var react_animated_weather__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_animated_weather__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var react_modal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-modal */ "./node_modules/react-modal/lib/index.js");
+/* harmony import */ var react_modal__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_modal__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _style__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./style */ "./client/components/style.js");
 
 
 
@@ -449,16 +416,17 @@ class Weather extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
   }
 
   componentDidMount() {
-    let coordinates = this.props.coordinates;
+    const {
+      coordinates,
+      resortId
+    } = this.props;
     console.log('coordinates in CDM weahter', coordinates);
     this.props.fetchWeather(coordinates);
   }
 
   render() {
-    const weatherData = this.props.weather.daily;
-    const {
-      destinationAirCode
-    } = this.props;
+    const weatherData = this.props.singleResort.daily;
+    console.log('singleResort inside Weather', this.props.singleResort);
 
     if (!weatherData) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "PrayForSnow");
@@ -484,27 +452,27 @@ class Weather extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
           item: true,
           xs: 6,
           sm: 3
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_animated_weather__WEBPACK_IMPORTED_MODULE_8___default.a, {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_animated_weather__WEBPACK_IMPORTED_MODULE_6___default.a, {
           icon: iconName
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_CardContent__WEBPACK_IMPORTED_MODULE_5__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_CardContent__WEBPACK_IMPORTED_MODULE_4__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_5__["default"], {
           gutterBottom: true,
           variant: "caption",
           component: "h2"
-        }, getDate(eachDay.sunsetTime)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        }, getDate(eachDay.sunsetTime)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_5__["default"], {
           variant: "caption",
           color: "textSecondary",
           component: "p"
-        }, "accum:", convertToInches(eachDay.precipAccumulation), "inches"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        }, "accum:", convertToInches(eachDay.precipAccumulation), "inches"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_5__["default"], {
           variant: "caption",
           color: "textSecondary",
           component: "p"
         }, "precp type:", eachDay.precipType ? eachDay.precipType : 'none')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           onClick: this.openModal
-        }, "Flights"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_modal__WEBPACK_IMPORTED_MODULE_11___default.a, {
+        }, "Flights"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_modal__WEBPACK_IMPORTED_MODULE_7___default.a, {
           isOpen: this.state.modalIsOpen,
           onAfterOpen: this.afterOpenModal,
           onRequestClose: this.closeModal,
-          style: _style__WEBPACK_IMPORTED_MODULE_12__["style"].modalContent,
+          style: _style__WEBPACK_IMPORTED_MODULE_8__["style"].modalContent,
           contentLabel: "Example Modal"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
           ref: subtitle => this.subtitle = subtitle
@@ -518,11 +486,11 @@ class Weather extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
 }
 
 const mapStateToProps = state => ({
-  weather: state.weather
+  singleResort: state.singleResort
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchWeather: coordinates => dispatch(Object(_redux_weather__WEBPACK_IMPORTED_MODULE_2__["fetchWeatherThunk"])(coordinates))
+  fetchWeather: coordinates => dispatch(Object(_redux_singleResort__WEBPACK_IMPORTED_MODULE_2__["fetchWeatherThunk"])(coordinates))
 });
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(Weather));
@@ -706,7 +674,7 @@ const setSelectedAirportCodeThunk = selectedCode => {
   return async dispatch => {
     const updateCode = (await axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(`/api/airportcodes`, selectedCode)).data;
     return dispatch(setSelectedAiportCode(updateCode));
-  }; // dispatch(setSelectedAiportCode(selectedCode));
+  };
 };
 const initialState = {
   list: [],
@@ -746,8 +714,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _passes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./passes */ "./client/redux/passes.js");
 /* harmony import */ var _resorts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./resorts */ "./client/redux/resorts.js");
-/* harmony import */ var _weather__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./weather */ "./client/redux/weather.js");
-/* harmony import */ var _airport__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./airport */ "./client/redux/airport.js");
+/* harmony import */ var _airport__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./airport */ "./client/redux/airport.js");
+/* harmony import */ var _singleResort__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./singleResort */ "./client/redux/singleResort.js");
 
 
 
@@ -756,8 +724,8 @@ __webpack_require__.r(__webpack_exports__);
 const appReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   passes: _passes__WEBPACK_IMPORTED_MODULE_1__["default"],
   resorts: _resorts__WEBPACK_IMPORTED_MODULE_2__["default"],
-  weather: _weather__WEBPACK_IMPORTED_MODULE_3__["default"],
-  airport: _airport__WEBPACK_IMPORTED_MODULE_4__["default"]
+  airport: _airport__WEBPACK_IMPORTED_MODULE_3__["default"],
+  singleResort: _singleResort__WEBPACK_IMPORTED_MODULE_4__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (appReducer);
 
@@ -832,7 +800,6 @@ const setResorts = resorts => {
   return action;
 };
 const fetchResortsThunk = passId => {
-  console.log('passId inside fetchResortsThurnk', passId);
   return async dispatch => {
     const resorts = (await axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(`/api/passes/${passId}`)).data;
     return dispatch(setResorts(resorts));
@@ -854,44 +821,46 @@ const resortsReducer = (state = initialState, action) => {
 
 /***/ }),
 
-/***/ "./client/redux/weather.js":
-/*!*********************************!*\
-  !*** ./client/redux/weather.js ***!
-  \*********************************/
-/*! exports provided: setWeather, fetchWeatherThunk, default */
+/***/ "./client/redux/singleResort.js":
+/*!**************************************!*\
+  !*** ./client/redux/singleResort.js ***!
+  \**************************************/
+/*! exports provided: SET_SINGLE_RESORT_WEATHER, setSingleResortWeather, fetchWeatherThunk, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setWeather", function() { return setWeather; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_SINGLE_RESORT_WEATHER", function() { return SET_SINGLE_RESORT_WEATHER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setSingleResortWeather", function() { return setSingleResortWeather; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchWeatherThunk", function() { return fetchWeatherThunk; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
-const SET_WEATHER = 'SET_WEATHER';
-const setWeather = gotWeather => {
+const SET_SINGLE_RESORT_WEATHER = 'SET_SINGLE_RESORT_WEATHER';
+const setSingleResortWeather = weather => {
+  console.log('!!!!!!!incoming weather', weather);
   const action = {
-    type: SET_WEATHER,
-    payload: gotWeather
+    type: SET_SINGLE_RESORT_WEATHER,
+    payload: weather
   };
-  console.log('gotWeather', action);
+  console.log('!!!action inside setSingleResortWeather', action);
   return action;
-}; // not complete
-
+};
 const fetchWeatherThunk = location => {
   console.log('loation from fetchWeatherThunk', location[0], location[1]);
   let latitude = location[0];
   let longitude = location[1];
   return async dispatch => {
     const weather = (await axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/855cacab7ae18afccb0c8fa334711f17/${latitude},${longitude}?exclude=currently,minutely,hourly,flags`)).data;
-    return dispatch(setWeather(weather));
+    console.log('weather insdie fetchWeatherThunk', weather);
+    return dispatch(setSingleResortWeather(weather));
   };
 };
 const initialState = [];
 
-const weatherReducer = (state = initialState, action) => {
+const singleResortReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_WEATHER:
+    case SET_SINGLE_RESORT_WEATHER:
       return action.payload;
 
     default:
@@ -899,7 +868,7 @@ const weatherReducer = (state = initialState, action) => {
   }
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (weatherReducer);
+/* harmony default export */ __webpack_exports__["default"] = (singleResortReducer);
 
 /***/ }),
 

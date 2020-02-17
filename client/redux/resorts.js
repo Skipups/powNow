@@ -13,7 +13,6 @@ export const setResorts = resorts => {
 };
 
 export const fetchResortsThunk = passId => {
-  console.log('passId inside fetchResortsThurnk', passId);
   return async dispatch => {
     const resorts = (await axios.get(`/api/passes/${passId}`)).data;
 

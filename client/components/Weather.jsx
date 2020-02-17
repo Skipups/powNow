@@ -1,17 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
-import { fetchWeatherThunk } from '../redux/weather';
+import { fetchWeatherThunk } from '../redux/singleResort';
 import { Card, Grid } from '@material-ui/core';
-
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import ReactAnimatedWeather from 'react-animated-weather';
-import Flights from './Flights';
-import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 import { style } from './style';
 
@@ -61,14 +54,15 @@ class Weather extends React.Component {
     this.setState({ modalIsOpen: false });
   }
   componentDidMount() {
-    let coordinates = this.props.coordinates;
+    const { coordinates, resortId } = this.props;
     console.log('coordinates in CDM weahter', coordinates);
     this.props.fetchWeather(coordinates);
   }
 
   render() {
-    const weatherData = this.props.weather.daily;
-    const { destinationAirCode } = this.props;
+    const weatherData = this.props.singleResort.daily;
+    console.log('singleResort inside Weather', this.props.singleResort);
+
     if (!weatherData) {
       return <div>PrayForSnow</div>;
     } else {
@@ -152,7 +146,7 @@ class Weather extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  weather: state.weather,
+  singleResort: state.singleResort,
 });
 
 const mapDispatchToProps = dispatch => ({

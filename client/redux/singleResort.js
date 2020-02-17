@@ -1,16 +1,17 @@
 import axios from 'axios';
 
-const SET_WEATHER = 'SET_WEATHER';
+export const SET_SINGLE_RESORT_WEATHER = 'SET_SINGLE_RESORT_WEATHER';
 
-export const setWeather = gotWeather => {
+export const setSingleResortWeather = weather => {
+  console.log('!!!!!!!incoming weather', weather);
   const action = {
-    type: SET_WEATHER,
-    payload: gotWeather,
+    type: SET_SINGLE_RESORT_WEATHER,
+    payload: weather,
   };
-  console.log('gotWeather', action);
+  console.log('!!!action inside setSingleResortWeather', action);
   return action;
 };
-// not complete
+
 export const fetchWeatherThunk = location => {
   console.log('loation from fetchWeatherThunk', location[0], location[1]);
   let latitude = location[0];
@@ -21,19 +22,19 @@ export const fetchWeatherThunk = location => {
         `https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/855cacab7ae18afccb0c8fa334711f17/${latitude},${longitude}?exclude=currently,minutely,hourly,flags`
       )
     ).data;
-    return dispatch(setWeather(weather));
+    console.log('weather insdie fetchWeatherThunk', weather);
+    return dispatch(setSingleResortWeather(weather));
   };
 };
 
 const initialState = [];
 
-const weatherReducer = (state = initialState, action) => {
+const singleResortReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_WEATHER:
+    case SET_SINGLE_RESORT_WEATHER:
       return action.payload;
     default:
       return state;
   }
 };
-
-export default weatherReducer;
+export default singleResortReducer;

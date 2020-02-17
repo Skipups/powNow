@@ -6,7 +6,6 @@ const apiRouter = Router();
 apiRouter.get('/passes', (req, res, next) => {
   Pass.findAll()
     .then(foundPasses => {
-      console.log('FOUND PASSES ', foundPasses);
       res.status(200).send(foundPasses);
     })
     .catch(e => next());
@@ -23,6 +22,15 @@ apiRouter.get('/passes/:id', (req, res, next) => {
       console.log(e);
       next(e);
     });
+});
+
+apiRouter.get('/resort', (req, res, next) => {
+  Resort.findByPK({ where: { id: req.params.id } })
+    .then(foundResort => {
+      console.log('FOUND RESORT ', foundResort);
+      res.status(200).send(foundResort);
+    })
+    .catch(e => next());
 });
 
 apiRouter.get('/airportcodes', (req, res, next) => {

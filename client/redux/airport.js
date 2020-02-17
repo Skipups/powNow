@@ -34,7 +34,6 @@ export const setSelectedAirportCodeThunk = selectedCode => {
       .data;
     return dispatch(setSelectedAiportCode(updateCode));
   };
-  // dispatch(setSelectedAiportCode(selectedCode));
 };
 
 const initialState = { list: [], selected: '' };
