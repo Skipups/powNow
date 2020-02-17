@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { Pass, Resort } = require('../db/index.js');
+const { Pass, Resort, AirportCode } = require('../db/index.js');
 
 const apiRouter = Router();
 //not complete
@@ -23,5 +23,14 @@ apiRouter.get('/passes/:id', (req, res, next) => {
       console.log(e);
       next(e);
     });
+});
+
+apiRouter.get('/airportcodes', (req, res, next) => {
+  AirportCode.findAll()
+    .then(allCodes => {
+      console.log('FOUND CODES ', allCodes);
+      res.status(200).send(allCodes);
+    })
+    .catch(e => next());
 });
 module.exports = apiRouter;

@@ -2,6 +2,17 @@ const Sequelize = require('sequelize');
 
 const { db } = require('./../connection.js');
 
+// define airportcode model
+const AirportCode = db.define('airportcode', {
+  // id: {
+  //   type: Sequelize.INTEGER,
+  //   primaryKey: true,
+  // },
+  airportcode: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+});
 // define pass model
 const Pass = db.define('pass', {
   id: {
@@ -35,4 +46,4 @@ const Resort = db.define('resort', {
   },
 });
 
-module.exports = { Pass, Resort };
+module.exports = { Pass, Resort, AirportCode };

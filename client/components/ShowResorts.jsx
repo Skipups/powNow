@@ -1,10 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
 import { fetchResortsThunk } from '../redux/resorts';
 import Weather from './Weather';
-import { Grid, Card } from '@material-ui/core';
-import Box from '@material-ui/core/Box';
 
 //bring in all resorts assiciated with selected pass
 class ShowResorts extends React.Component {
@@ -45,8 +42,13 @@ class ShowResorts extends React.Component {
                     alt="complex"
                     src={resort.image}
                   />
+                  {console.log('resort.location', resort.location)}
                 </div>
-                <Weather coordinates={resort.location} />
+
+                <Weather
+                  destinationAirCode={resort.closestAirCode}
+                  coordinates={resort.location}
+                />
               </div>
 
               // </Box>

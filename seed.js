@@ -21,8 +21,20 @@ const passList = [
 ];
 //create see pass in DB
 
-const { Pass, Resort } = require('./server/db/models/models');
+const { Pass, Resort, AirportCode } = require('./server/db/models/models');
 const { db } = require('./server/db/index.js');
+
+const airportCodeList = [
+  {
+    airportcode: 'JFK',
+  },
+  {
+    airportcode: 'LGA',
+  },
+  {
+    airportcode: 'SEA',
+  },
+];
 const resortList = [
   {
     name: 'Alta',
@@ -59,6 +71,7 @@ async function syncAndSeedDatabase() {
     throw new Error(e);
   }
   try {
+    await AirportCode.bulkCreate(airportCodeList);
     await Pass.bulkCreate(passList);
     await Resort.bulkCreate(resortList);
   } catch (e) {
